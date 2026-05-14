@@ -18,6 +18,7 @@ import { Route as IntroRouteImport } from './routes/intro'
 import { Route as FortuneRouteImport } from './routes/fortune'
 import { Route as ExchangeDiaryRoomRouteImport } from './routes/exchange-diary-room'
 import { Route as ExchangeDiaryJoinRouteImport } from './routes/exchange-diary-join'
+import { Route as ExchangeDiaryCreateRouteImport } from './routes/exchange-diary-create'
 import { Route as ExchangeDiaryRouteImport } from './routes/exchange-diary'
 import { Route as ChatRouteImport } from './routes/chat'
 import { Route as AnalysisRouteImport } from './routes/analysis'
@@ -69,6 +70,11 @@ const ExchangeDiaryJoinRoute = ExchangeDiaryJoinRouteImport.update({
   path: '/exchange-diary-join',
   getParentRoute: () => rootRouteImport,
 } as any)
+const ExchangeDiaryCreateRoute = ExchangeDiaryCreateRouteImport.update({
+  id: '/exchange-diary-create',
+  path: '/exchange-diary-create',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const ExchangeDiaryRoute = ExchangeDiaryRouteImport.update({
   id: '/exchange-diary',
   path: '/exchange-diary',
@@ -101,6 +107,7 @@ export interface FileRoutesByFullPath {
   '/analysis': typeof AnalysisRoute
   '/chat': typeof ChatRoute
   '/exchange-diary': typeof ExchangeDiaryRoute
+  '/exchange-diary-create': typeof ExchangeDiaryCreateRoute
   '/exchange-diary-join': typeof ExchangeDiaryJoinRoute
   '/exchange-diary-room': typeof ExchangeDiaryRoomRoute
   '/fortune': typeof FortuneRoute
@@ -117,6 +124,7 @@ export interface FileRoutesByTo {
   '/analysis': typeof AnalysisRoute
   '/chat': typeof ChatRoute
   '/exchange-diary': typeof ExchangeDiaryRoute
+  '/exchange-diary-create': typeof ExchangeDiaryCreateRoute
   '/exchange-diary-join': typeof ExchangeDiaryJoinRoute
   '/exchange-diary-room': typeof ExchangeDiaryRoomRoute
   '/fortune': typeof FortuneRoute
@@ -134,6 +142,7 @@ export interface FileRoutesById {
   '/analysis': typeof AnalysisRoute
   '/chat': typeof ChatRoute
   '/exchange-diary': typeof ExchangeDiaryRoute
+  '/exchange-diary-create': typeof ExchangeDiaryCreateRoute
   '/exchange-diary-join': typeof ExchangeDiaryJoinRoute
   '/exchange-diary-room': typeof ExchangeDiaryRoomRoute
   '/fortune': typeof FortuneRoute
@@ -152,6 +161,7 @@ export interface FileRouteTypes {
     | '/analysis'
     | '/chat'
     | '/exchange-diary'
+    | '/exchange-diary-create'
     | '/exchange-diary-join'
     | '/exchange-diary-room'
     | '/fortune'
@@ -168,6 +178,7 @@ export interface FileRouteTypes {
     | '/analysis'
     | '/chat'
     | '/exchange-diary'
+    | '/exchange-diary-create'
     | '/exchange-diary-join'
     | '/exchange-diary-room'
     | '/fortune'
@@ -184,6 +195,7 @@ export interface FileRouteTypes {
     | '/analysis'
     | '/chat'
     | '/exchange-diary'
+    | '/exchange-diary-create'
     | '/exchange-diary-join'
     | '/exchange-diary-room'
     | '/fortune'
@@ -201,6 +213,7 @@ export interface RootRouteChildren {
   AnalysisRoute: typeof AnalysisRoute
   ChatRoute: typeof ChatRoute
   ExchangeDiaryRoute: typeof ExchangeDiaryRoute
+  ExchangeDiaryCreateRoute: typeof ExchangeDiaryCreateRoute
   ExchangeDiaryJoinRoute: typeof ExchangeDiaryJoinRoute
   ExchangeDiaryRoomRoute: typeof ExchangeDiaryRoomRoute
   FortuneRoute: typeof FortuneRoute
@@ -277,6 +290,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof ExchangeDiaryJoinRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/exchange-diary-create': {
+      id: '/exchange-diary-create'
+      path: '/exchange-diary-create'
+      fullPath: '/exchange-diary-create'
+      preLoaderRoute: typeof ExchangeDiaryCreateRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/exchange-diary': {
       id: '/exchange-diary'
       path: '/exchange-diary'
@@ -321,6 +341,7 @@ const rootRouteChildren: RootRouteChildren = {
   AnalysisRoute: AnalysisRoute,
   ChatRoute: ChatRoute,
   ExchangeDiaryRoute: ExchangeDiaryRoute,
+  ExchangeDiaryCreateRoute: ExchangeDiaryCreateRoute,
   ExchangeDiaryJoinRoute: ExchangeDiaryJoinRoute,
   ExchangeDiaryRoomRoute: ExchangeDiaryRoomRoute,
   FortuneRoute: FortuneRoute,
