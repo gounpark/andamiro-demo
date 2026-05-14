@@ -9,17 +9,26 @@
 // Additionally, you should also exclude this file from your linter and/or formatter to prevent it from being checked or modified.
 
 import { Route as rootRouteImport } from './routes/__root'
+import { Route as ShareDiaryRouteImport } from './routes/share-diary'
 import { Route as ReportRouteImport } from './routes/report'
 import { Route as RecordRouteImport } from './routes/record'
 import { Route as PresentationRouteImport } from './routes/presentation'
 import { Route as MyRouteImport } from './routes/my'
 import { Route as IntroRouteImport } from './routes/intro'
 import { Route as FortuneRouteImport } from './routes/fortune'
+import { Route as ExchangeDiaryRoomRouteImport } from './routes/exchange-diary-room'
+import { Route as ExchangeDiaryJoinRouteImport } from './routes/exchange-diary-join'
+import { Route as ExchangeDiaryRouteImport } from './routes/exchange-diary'
 import { Route as ChatRouteImport } from './routes/chat'
 import { Route as AnalysisRouteImport } from './routes/analysis'
 import { Route as AdviceRouteImport } from './routes/advice'
 import { Route as IndexRouteImport } from './routes/index'
 
+const ShareDiaryRoute = ShareDiaryRouteImport.update({
+  id: '/share-diary',
+  path: '/share-diary',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const ReportRoute = ReportRouteImport.update({
   id: '/report',
   path: '/report',
@@ -50,6 +59,21 @@ const FortuneRoute = FortuneRouteImport.update({
   path: '/fortune',
   getParentRoute: () => rootRouteImport,
 } as any)
+const ExchangeDiaryRoomRoute = ExchangeDiaryRoomRouteImport.update({
+  id: '/exchange-diary-room',
+  path: '/exchange-diary-room',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ExchangeDiaryJoinRoute = ExchangeDiaryJoinRouteImport.update({
+  id: '/exchange-diary-join',
+  path: '/exchange-diary-join',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ExchangeDiaryRoute = ExchangeDiaryRouteImport.update({
+  id: '/exchange-diary',
+  path: '/exchange-diary',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const ChatRoute = ChatRouteImport.update({
   id: '/chat',
   path: '/chat',
@@ -76,24 +100,32 @@ export interface FileRoutesByFullPath {
   '/advice': typeof AdviceRoute
   '/analysis': typeof AnalysisRoute
   '/chat': typeof ChatRoute
+  '/exchange-diary': typeof ExchangeDiaryRoute
+  '/exchange-diary-join': typeof ExchangeDiaryJoinRoute
+  '/exchange-diary-room': typeof ExchangeDiaryRoomRoute
   '/fortune': typeof FortuneRoute
   '/intro': typeof IntroRoute
   '/my': typeof MyRoute
   '/presentation': typeof PresentationRoute
   '/record': typeof RecordRoute
   '/report': typeof ReportRoute
+  '/share-diary': typeof ShareDiaryRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/advice': typeof AdviceRoute
   '/analysis': typeof AnalysisRoute
   '/chat': typeof ChatRoute
+  '/exchange-diary': typeof ExchangeDiaryRoute
+  '/exchange-diary-join': typeof ExchangeDiaryJoinRoute
+  '/exchange-diary-room': typeof ExchangeDiaryRoomRoute
   '/fortune': typeof FortuneRoute
   '/intro': typeof IntroRoute
   '/my': typeof MyRoute
   '/presentation': typeof PresentationRoute
   '/record': typeof RecordRoute
   '/report': typeof ReportRoute
+  '/share-diary': typeof ShareDiaryRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
@@ -101,12 +133,16 @@ export interface FileRoutesById {
   '/advice': typeof AdviceRoute
   '/analysis': typeof AnalysisRoute
   '/chat': typeof ChatRoute
+  '/exchange-diary': typeof ExchangeDiaryRoute
+  '/exchange-diary-join': typeof ExchangeDiaryJoinRoute
+  '/exchange-diary-room': typeof ExchangeDiaryRoomRoute
   '/fortune': typeof FortuneRoute
   '/intro': typeof IntroRoute
   '/my': typeof MyRoute
   '/presentation': typeof PresentationRoute
   '/record': typeof RecordRoute
   '/report': typeof ReportRoute
+  '/share-diary': typeof ShareDiaryRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
@@ -115,36 +151,48 @@ export interface FileRouteTypes {
     | '/advice'
     | '/analysis'
     | '/chat'
+    | '/exchange-diary'
+    | '/exchange-diary-join'
+    | '/exchange-diary-room'
     | '/fortune'
     | '/intro'
     | '/my'
     | '/presentation'
     | '/record'
     | '/report'
+    | '/share-diary'
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
     | '/advice'
     | '/analysis'
     | '/chat'
+    | '/exchange-diary'
+    | '/exchange-diary-join'
+    | '/exchange-diary-room'
     | '/fortune'
     | '/intro'
     | '/my'
     | '/presentation'
     | '/record'
     | '/report'
+    | '/share-diary'
   id:
     | '__root__'
     | '/'
     | '/advice'
     | '/analysis'
     | '/chat'
+    | '/exchange-diary'
+    | '/exchange-diary-join'
+    | '/exchange-diary-room'
     | '/fortune'
     | '/intro'
     | '/my'
     | '/presentation'
     | '/record'
     | '/report'
+    | '/share-diary'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
@@ -152,16 +200,27 @@ export interface RootRouteChildren {
   AdviceRoute: typeof AdviceRoute
   AnalysisRoute: typeof AnalysisRoute
   ChatRoute: typeof ChatRoute
+  ExchangeDiaryRoute: typeof ExchangeDiaryRoute
+  ExchangeDiaryJoinRoute: typeof ExchangeDiaryJoinRoute
+  ExchangeDiaryRoomRoute: typeof ExchangeDiaryRoomRoute
   FortuneRoute: typeof FortuneRoute
   IntroRoute: typeof IntroRoute
   MyRoute: typeof MyRoute
   PresentationRoute: typeof PresentationRoute
   RecordRoute: typeof RecordRoute
   ReportRoute: typeof ReportRoute
+  ShareDiaryRoute: typeof ShareDiaryRoute
 }
 
 declare module '@tanstack/react-router' {
   interface FileRoutesByPath {
+    '/share-diary': {
+      id: '/share-diary'
+      path: '/share-diary'
+      fullPath: '/share-diary'
+      preLoaderRoute: typeof ShareDiaryRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/report': {
       id: '/report'
       path: '/report'
@@ -204,6 +263,27 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof FortuneRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/exchange-diary-room': {
+      id: '/exchange-diary-room'
+      path: '/exchange-diary-room'
+      fullPath: '/exchange-diary-room'
+      preLoaderRoute: typeof ExchangeDiaryRoomRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/exchange-diary-join': {
+      id: '/exchange-diary-join'
+      path: '/exchange-diary-join'
+      fullPath: '/exchange-diary-join'
+      preLoaderRoute: typeof ExchangeDiaryJoinRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/exchange-diary': {
+      id: '/exchange-diary'
+      path: '/exchange-diary'
+      fullPath: '/exchange-diary'
+      preLoaderRoute: typeof ExchangeDiaryRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/chat': {
       id: '/chat'
       path: '/chat'
@@ -240,12 +320,16 @@ const rootRouteChildren: RootRouteChildren = {
   AdviceRoute: AdviceRoute,
   AnalysisRoute: AnalysisRoute,
   ChatRoute: ChatRoute,
+  ExchangeDiaryRoute: ExchangeDiaryRoute,
+  ExchangeDiaryJoinRoute: ExchangeDiaryJoinRoute,
+  ExchangeDiaryRoomRoute: ExchangeDiaryRoomRoute,
   FortuneRoute: FortuneRoute,
   IntroRoute: IntroRoute,
   MyRoute: MyRoute,
   PresentationRoute: PresentationRoute,
   RecordRoute: RecordRoute,
   ReportRoute: ReportRoute,
+  ShareDiaryRoute: ShareDiaryRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
