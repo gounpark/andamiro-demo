@@ -72,8 +72,8 @@ function ExchangeDiaryPage() {
           </Link>
           <h1 className="font-semibold text-foreground text-[16px] tracking-tight">교환 일기장</h1>
           <Link
-            to="/exchange-diary-join"
-            search={{ step: "invite" }}
+            to="/exchange-diary-create"
+            search={{ step: "name" }}
             className="grid h-9 w-9 place-items-center rounded-xl bg-[#f4f6fa] text-foreground/60 hover:text-foreground active:scale-[0.97] transition"
           >
             <Plus className="h-5 w-5" strokeWidth={2.2} />
@@ -140,8 +140,8 @@ function EmptyState() {
     <div className="flex flex-col items-center justify-center h-full pt-32 px-8 gap-4">
       <p className="text-[16px] text-foreground/50 tracking-tight text-center">아직 일기장이 없어요 😢</p>
       <Link
-        to="/exchange-diary-join"
-        search={{ step: "invite" }}
+        to="/exchange-diary-create"
+        search={{ step: "name" }}
         className="mt-2 flex items-center justify-center rounded-2xl bg-[var(--primary)] px-6 py-3.5 font-semibold text-white text-[15px] tracking-tight shadow-md active:scale-[0.99] transition"
       >
         새 교환일기 방 만들기
