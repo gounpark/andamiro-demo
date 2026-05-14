@@ -302,6 +302,12 @@ function AnalysisPage() {
           {/* 하단 버튼 */}
           <div ref={buttonsRef} className="mx-4 mt-6 mb-6 flex flex-col gap-2.5" style={fadeIn(6)}>
             <Link
+              to="/share-diary"
+              className="flex w-full items-center justify-center bg-white py-3.5 font-semibold text-[var(--primary)] text-[15px] tracking-tight border border-[var(--primary)]/20 active:scale-[0.99] transition rounded-2xl shadow-none"
+            >
+              공유일기로 공유하기
+            </Link>
+            <Link
               to="/advice"
               search={{ empty: false }}
               className="flex w-full items-center justify-center bg-white py-3.5 font-semibold text-[var(--primary)] text-[15px] tracking-tight border border-[var(--primary)]/20 active:scale-[0.99] transition rounded-2xl shadow-none"

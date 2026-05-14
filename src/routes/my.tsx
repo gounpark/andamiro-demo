@@ -1,6 +1,6 @@
-import { createFileRoute } from "@tanstack/react-router";
+import { createFileRoute, Link } from "@tanstack/react-router";
 import { useState } from "react";
-import { ChevronRight, Bell, Moon, Clock, Database, Megaphone, HelpCircle, FileText } from "lucide-react";
+import { ChevronRight, Bell, Moon, Clock, Database, Megaphone, HelpCircle, FileText, BookOpen } from "lucide-react";
 import { Switch } from "@/components/ui/switch";
 import cloverActiveSvg from "@/assets/icons/clover-active.svg";
 import bgShapeLargeSvg from "@/assets/icons/bg-shape-large.svg";
@@ -80,7 +80,7 @@ function MyPage() {
             <p className="px-1 mb-2 text-[12px] text-[#999] tracking-tight">나의 기록 요약</p>
             <div className="rounded-2xl bg-white p-3 shadow-sm grid grid-cols-3">
               <Stat value="12" label="작성한 일기" />
-              <Stat value="5" label="연속 기록" divided />
+              <Stat value="5" label="교환일기" divided />
               <Stat value="3" label="이번 달" divided />
             </div>
           </section>
@@ -92,6 +92,7 @@ function MyPage() {
               <RowToggle icon={<Bell className="h-4 w-4" />} label="알림 설정" checked={notif} onChange={setNotif} />
               <RowToggle icon={<Moon className="h-4 w-4" />} label="다크 모드" checked={dark} onChange={setDark} />
               <Row icon={<Clock className="h-4 w-4" />} label="일기 알림 시간" trailing="21:00" />
+              <RowLink to="/exchange-diary" icon={<BookOpen className="h-4 w-4" />} label="교환 일기장" last />
             </div>
           </section>
 
@@ -162,6 +163,33 @@ function Row({
       {trailing && <span className="text-[12.5px] text-[#999]">{trailing}</span>}
       {!hideChevron && <ChevronRight className="h-4 w-4 text-[#cbcbd1]" strokeWidth={2.2} />}
     </button>
+  );
+}
+
+function RowLink({
+  to,
+  icon,
+  label,
+  last,
+}: {
+  to: string;
+  icon: React.ReactNode;
+  label: string;
+  last?: boolean;
+}) {
+  return (
+    <Link
+      to={to as "/exchange-diary"}
+      className={`w-full flex items-center gap-3 px-4 py-3.5 text-left active:bg-[#fafbfc] transition ${
+        last ? "" : "border-b border-[#f5f5f5]"
+      }`}
+    >
+      <span className="grid h-7 w-7 place-items-center rounded-full bg-[#f4f6fa] text-[var(--primary)] shrink-0">
+        {icon}
+      </span>
+      <span className="flex-1 text-[14px] text-foreground tracking-tight">{label}</span>
+      <ChevronRight className="h-4 w-4 text-[#cbcbd1]" strokeWidth={2.2} />
+    </Link>
   );
 }
 
